@@ -7,10 +7,9 @@ mkdir -p src/utils
 mkdir -p src/eval
 mkdir -p src/finetune
 mkdir -p src/train
-mkdir -p src/inference
 mkdir -p src/models
 mkdir -p src/configs
-mkdir -p src/experiments
+mkdir -p experiments
 mkdir -p scripts
 mkdir -p notebook
 mkdir -p results
@@ -18,7 +17,6 @@ mkdir -p results
 # Create files in src/
 touch src/utils/prepare_data.py
 touch src/train/train.py
-touch src/inference/inference.py
 touch src/models/models.py
 
 # Create scripts
@@ -26,7 +24,170 @@ touch scripts/run.sh
 
 # Create requirements and gitignore
 touch requirements.txt
-touch .gitignore
+
+# Create .gitignore with basic requirements
+cat <<EOL > .gitignore
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Data files
+*.csv
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.parquet
+
+# Model files
+*.pt
+*.pth
+*.ckpt
+*.pb
+*.onnx
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Experiment logs
+wandb/
+mlruns/
+tensorboard_logs/
+
+EOL
 
 # Create README with basic content
 cat <<EOL > README.md
@@ -41,6 +202,8 @@ This is a starter kit for my Machine Learning project. It provides a structured 
 ├── bin/                     # Binary files or scripts
 ├── data/                    # Data storage
 │   └── .gitkeep             # Keeps the folder in version control
+├── experiments/             # Experiment scripts and logs
+│   └── .gitkeep             # Keeps the folder in version control
 ├── notebook/                # Jupyter notebooks for experiments and analysis
 │   └── .gitkeep             # Keeps the folder in version control
 ├── results/                 # Output results from experiments
@@ -50,12 +213,7 @@ This is a starter kit for my Machine Learning project. It provides a structured 
 │   │   └── .gitkeep         # Keeps the folder in version control
 │   ├── eval/                # Evaluation scripts
 │   │   └── __init__.py
-│   ├── experiments/         # Experiment scripts and logs
-│   │   └── .gitkeep         # Keeps the folder in version control
 │   ├── finetune/            # Fine-tuning scripts
-│   │   └── __init__.py
-│   ├── inference/           # Inference scripts
-│   │   ├── inference.py
 │   │   └── __init__.py
 │   ├── models/              # Model definitions
 │   │   ├── models.py
@@ -140,7 +298,7 @@ EOL
 cat <<EOL > LICENSE
 MIT License
 
-Copyright (c) 2024 [Your Name or Organization]
+Copyright (c) 2025 [Your Name or Organization]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -167,7 +325,6 @@ touch src/utils/__init__.py
 touch src/eval/__init__.py
 touch src/finetune/__init__.py
 touch src/train/__init__.py
-touch src/inference/__init__.py
 touch src/models/__init__.py
 
 # Add .gitkeep to empty directories
@@ -176,6 +333,6 @@ touch bin/.gitkeep
 touch notebook/.gitkeep
 touch results/.gitkeep
 touch src/configs/.gitkeep
-touch src/experiments/.gitkeep
+touch experiments/.gitkeep
 
 echo "ML starter kit structure with README, CONTRIBUTING.md, and LICENSE created successfully!"
